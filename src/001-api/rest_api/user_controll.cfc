@@ -1,4 +1,4 @@
-<cfcomponent rest="true" restpath="user">
+<cfcomponent rest="true" restpath="user_controll">
 
 	<cfobject name="objUser" component="cfc.user">
   
@@ -26,7 +26,7 @@
 	</cffunction>
   
 	<!--- User Login--->
-	<cffunction name="login" restpath="login" access="remote" returntype="struct" httpmethod="POST" produces="application/json">
+	<cffunction httpmethod="POST" restpath="login"  name="login"access="remote" returntype="struct" produces="application/json">
 	<cfargument name="structform" type="any" required="yes">
 
 		<cfset var response = {}>
@@ -36,10 +36,11 @@
 	</cffunction>
 	 
 	<!--- User specific functions --->
-	<cffunction name="getuser" restpath="user/{id}" access="remote" returntype="struct" httpmethod="GET" produces="application/json">
+	<cffunction httpmethod="GET" restpath="user/{id}" name="getuser" access="remote" returntype="struct" produces="application/json">
 	<cfargument name="id" type="any" required="yes" restargsource="path"/>
 		<cfset var response = {}>
 
+		<!--- 認証チェック --->
 		<cfset verify = authenticate()>
 		<cfif not verify.success>
 			<cfset response["success"] = false>
