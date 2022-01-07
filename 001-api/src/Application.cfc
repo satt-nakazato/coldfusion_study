@@ -1,5 +1,5 @@
 <cfcomponent output="false">
-	<cfset this.name = "cfrestdemo">
+	<cfset this.name = "cf_001-api">
 	<cfset this.restsettings.cfclocation = "./">
 	<cfset this.restsettings.skipCFCWithError = true>
 
